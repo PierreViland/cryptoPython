@@ -3,6 +3,7 @@
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.Random import get_random_bytes
+
 import base64
 import os
 
@@ -32,10 +33,13 @@ class RsaGestion:
     def chargement_clefs(self, fichier_public, fichier_prive):
         self.chargement_clef_privee(fichier_prive)
         self.chargement_clef_publique(fichier_public)
+        setupG = gestionSetup();
+        setupG.actionSetupRSA(self.clefPrive, self.clefPublic)
 
     def chargement_clef_privee(self, fichier_prive):
         with open(fichier_prive, 'rb') as f:
             self.clefPrive = RSA.import_key(f.read())
+            
 
     def chargement_clef_publique(self, fichier_public):
         with open(fichier_public, 'rb') as f:

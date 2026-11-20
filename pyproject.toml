@@ -1,0 +1,9 @@
+# pyproject.toml
+[project]
+name = "macrypto"
+version = "1.0.0"
+dependencies = ["pycryptodome"]      # tes propres dépendances
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
