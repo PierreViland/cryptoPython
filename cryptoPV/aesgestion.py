@@ -4,6 +4,9 @@ import base64
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 from Crypto.Util.Padding import pad, unpad
+from .gestionSetup import gestionSetup
+import base64
+import os
 
 
 class AesGestion:
@@ -25,6 +28,11 @@ class AesGestion:
             self.aes_key = f.read()
         if len(self.aes_key) != 32:
             raise ValueError("Invalid AES-256 key size")
+        
+        print("Cle (hexa)   :", self.aes_key.hex().upper())                     # 64 caracteres
+        print("Cle (base64) :", base64.b64encode(self.aes_key).decode('utf-8'))  #    
+        setupG = gestionSetup();
+        setupG.actionSetupAES(self.aes_key)
 
     def encrypt_file(self, input_file, output_file):
         self.iv = get_random_bytes(16)
